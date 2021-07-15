@@ -117,7 +117,7 @@ def woof(amount: uint256 = MAX_UINT256, receiver: address = msg.sender) -> bool:
 def unwoof(amount: uint256 = MAX_UINT256, receiver: address = msg.sender) -> bool:
     burn_amount: uint256 = min(amount, self.balanceOf[msg.sender])
     self._burn(msg.sender, burn_amount)
-    assert ERC20(YFI).transfer(receiver, burn_amount)
+    assert ERC20(TOFI).transfer(receiver, burn_amount)
     return True
 
 
