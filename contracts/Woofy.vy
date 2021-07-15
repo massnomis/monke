@@ -108,7 +108,7 @@ def approve(spender: address, amount: uint256) -> bool:
 @external
 def woof(amount: uint256 = MAX_UINT256, receiver: address = msg.sender) -> bool:
     mint_amount: uint256 = min(amount, ERC20(TOFI).balanceOf(msg.sender))
-    assert ERC20(YFI).transferFrom(msg.sender, self, mint_amount)
+    assert ERC20(TOFI).transferFrom(msg.sender, self, mint_amount)
     self._mint(receiver, mint_amount)
     return True
 
