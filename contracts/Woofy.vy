@@ -23,7 +23,7 @@ DOMAIN_SEPARATOR: public(bytes32)
 DOMAIN_TYPE_HASH: constant(bytes32) = keccak256('EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)')
 PERMIT_TYPE_HASH: constant(bytes32) = keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)")
 
-YFI: constant(address) = 0x96D5f5ba8568fBF2aD5eC4746124d9F2Cf2Ac4fD
+TOFI: constant(address) = 0x96D5f5ba8568fBF2aD5eC4746124d9F2Cf2Ac4fD
 
 
 @external
@@ -31,7 +31,7 @@ def __init__():
     self.DOMAIN_SEPARATOR = keccak256(
         concat(
             DOMAIN_TYPE_HASH,
-            keccak256(convert("Woofy", Bytes[5])),
+            keccak256(convert("Monke", Bytes[5])),
             keccak256(convert("1", Bytes[1])),
             convert(chain.id, bytes32),
             convert(self, bytes32)
@@ -42,13 +42,13 @@ def __init__():
 @view
 @external
 def name() -> String[5]:
-    return "Woofy"
+    return "Monke"
 
 
 @view
 @external
 def symbol() -> String[5]:
-    return "WOOFY"
+    return "MONKE"
 
 
 @view
@@ -107,7 +107,7 @@ def approve(spender: address, amount: uint256) -> bool:
 
 @external
 def woof(amount: uint256 = MAX_UINT256, receiver: address = msg.sender) -> bool:
-    mint_amount: uint256 = min(amount, ERC20(YFI).balanceOf(msg.sender))
+    mint_amount: uint256 = min(amount, ERC20(TOFI).balanceOf(msg.sender))
     assert ERC20(YFI).transferFrom(msg.sender, self, mint_amount)
     self._mint(receiver, mint_amount)
     return True
